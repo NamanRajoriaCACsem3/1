@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue Light', 'Helvetica', sans-serif;
+            background-color: black;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            margin-left: 70px;
+            margin-right: 200px;
+        }
+
+        label {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        output {
+            font-size: 16px;
+            display: block;
+        }
+
+        #generate-video {
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #ff9900;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #generate-video:hover {
+            background-color: #ffa366;
+        }
+
+        #video-container {
+            margin-top: 20px;
+            display: none; /* Initially hide the video container */
+        }
+    </style>
+</head>
+<body>
+    <h1>Astra Carbon footprint visualizer</h1>
+    <p>Adjust the sliders and click generate to see what would happen to Earth if there were 8.1 Billion of you.</p>
+    
+    <div class="question">
+        <label for="drive-miles">How many kilometres do you drive per day?</label>
+        <input type="range" id="drive-miles" min="0" max="100" value="0">
+        <output id="drive-miles-output">0 miles</output>
+    </div>
+
+    <div class="question">
+        <label for="fly-miles">How many kilometres do you fly per year?</label>
+        <input type="range" id="fly-miles" min="0" max="50000" value="0">
+        <output id="fly-miles-output">0 miles</output>
+    </div>
+
+    <div class="question">
+        <label for="public-transport">How often do you use public transportation?</label>
+        <input type="range" id="public-transport" min="0" max="7" value="0" step="0.5">
+        <output id="public-transport-output">0 days per week</output>
+    </div>
+
+    <div class="question">
+        <label for="ac-hours">How many hours do you use the AC daily?</label>
+        <input type="range" id="ac-hours" min="0" max="24" value="0">
+        <output id="ac-output">0 hours</output>
+    </div>
+
+    <div class="question">
+        <label for="lights-hours">How many hours do you leave lights on per day?</label>
+        <input type="range" id="lights-hours" min="0" max="24" value="0">
+        <output id="lights-output">0 hours</output>
+    </div>
+
+    <div class="question">
+        <label for="meat-consumption">How often do you eat meat and dairy products?</label>
+        <input type="range" id="meat-consumption" min="0" max="7" value="0" step="0.5">
+        <output id="meat-consumption-output">0 days per week</output>
+    </div>
+
+    <div class="question">
+        <label for="local-foods">How often do you eat locally-sourced foods?</label>
+        <input type="range" id="local-foods" min="0" max="7" value="0" step="0.5">
+        <output id="local-foods-output">0 days per week</output>
+    </div>
+
+    <div class="question">
+        <label for="recycling">How often do you recycle?</label>
+        <input type="range" id="recycling" min="0" max="7" value="0" step="0.5">
+        <output id="recycling-output">0 days per week</output>
+    </div>
+
+    <button id="generate-video">Generate Video</button>
+
+    <div id="video-container">
+        <video src="generated_video.mp4" controls></video>
+    </div>
+
+    <script>
+        // Get all range inputs and their corresponding output elements
+        const sliders = document.querySelectorAll('input[type="range"]');
+        const outputs = document.querySelectorAll('output');
+        
+        // Function to update the output element's value when the slider is adjusted
+        function updateOutput() {
+            const value = this.value;
+            const output = this.nextElementSibling;
+            output.textContent = value + (output.id.includes("mile") ? " miles" : " hours"); // Adjust the unit based on the output ID
+        }
+        
+        // Add event listeners to each slider to update their corresponding output element
+        sliders.forEach(slider => {
+            slider.addEventListener('input', updateOutput);
+        });
+        
+        // Generate video function (Assuming the functionality to generate the video is implemented separately)
+        function generateVideo() {
+            // Here, you would generate the video dynamically based on user input
+            // For now, let's assume the video source is "generated_video.mp4"
+            const videoSrc = "generated_video.mp4";
+    
+            // Get the video container
+            const videoContainer = document.getElementById("video-container");
+    
+            // Create a new video element
+            const video = document.createElement("video");
+            video.src = videoSrc;
+            video.controls = true;
+            video.style.width = "100%"; // Set the width to 100% to fill the container
+    
+            // Clear the contents of the video container and append the video element
+            videoContainer.innerHTML = "";
+            videoContainer.appendChild(video);
+    
+            // Show the video container
+            videoContainer.style.display = "block";
+        }
+        
+        // Add event listener to the "Generate Video" button
+        document.getElementById("generate-video").addEventListener('click', generateVideo);
+    </script>
+</body>
+</html>

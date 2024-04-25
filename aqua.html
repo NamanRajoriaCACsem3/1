@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tutor - Quiz</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Include your CSS file here -->
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .answer-option {
+            margin-bottom: 10px;
+        }
+
+        .answer-option label {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #ff6600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Climate Change Quiz</h1>
+
+        <div class="quiz-question">
+            <p>1. What is the primary cause of global warming?</p>
+            <div class="answer-option">
+                <input type="checkbox" id="option1" name="question1" value="option1">
+                <label for="option1">Greenhouse gas emissions</label>
+            </div>
+            <div class="answer-option">
+                <input type="checkbox" id="option2" name="question1" value="option2">
+                <label for="option2">Deforestation</label>
+            </div>
+            <div class="answer-option">
+                <input type="checkbox" id="option3" name="question1" value="option3">
+                <label for="option3">Air pollution</label>
+            </div>
+            <div class="answer-option">
+                <input type="checkbox" id="option3" name="question1" value="option3">
+                <label for="option3">Water pollution</label>
+            </div>
+        </div>
+
+<!-- Question 2 -->
+<div class="quiz-question">
+    <p>2. What is the most potent greenhouse gas?</p>
+    <div class="answer-option">
+        <input type="checkbox" id="question2-option1" name="question2" value="option1">
+        <label for="question2-option1">Fluorinated gases</label>
+    </div>
+    <div class="answer-option">
+        <input type="checkbox" id="question2-option2" name="question2" value="option2">
+        <label for="question2-option2">Carbon dioxide</label>
+    </div>
+    <div class="answer-option">
+        <input type="checkbox" id="question2-option3" name="question2" value="option3">
+        <label for="question2-option3">Nitrous oxide</label>
+    </div>
+    <div class="answer-option">
+        <input type="checkbox" id="question2-option4" name="question2" value="option4">
+        <label for="question2-option4">Methane</label>
+    </div>
+</div>
+
+<!-- Question 3 -->
+<div class="quiz-question">
+    <p>3. How much have global average temperatures increased in the last century?</p>
+    <div class="answer-option">
+        <input type="checkbox" id="question3-option1" name="question3" value="option1">
+        <label for="question3-option1">2.1 degrees Fahrenheit</label>
+    </div>
+    <div class="answer-option">
+        <input type="checkbox" id="question3-option2" name="question3" value="option2">
+        <label for="question3-option2">0.6 degrees Fahrenheit</label>
+    </div>
+    <div class="answer-option">
+        <input type="checkbox" id="question3-option3" name="question3" value="option3">
+        <label for="question3-option3">4.3 degrees Fahrenheit</label>
+    </div>
+    <div class="answer-option">
+        <input type="checkbox" id="question3-option4" name="question3" value="option4">
+        <label for="question3-option4">1.4 degrees Fahrenheit</label>
+    </div>
+</div>
+        <!-- Add more quiz questions -->
+        <!-- Repeat the structure for each question -->
+
+        <button class="submit-button" onclick="submitQuiz()">Submit Answers</button>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            // Here you can implement the functionality to grade the quiz
+            // and provide feedback to the user
+            // For demonstration purposes, let's log the selected answers
+            var selectedAnswers = [];
+            var answerInputs = document.querySelectorAll('input[type="checkbox"]:checked');
+            answerInputs.forEach(function(input) {
+                selectedAnswers.push(input.value);
+            });
+            console.log('Selected Answers:', selectedAnswers);
+
+            // Here you can calculate the score and provide feedback to the user
+            // For demonstration purposes, let's assume a fixed score
+            var score = 67; // Change this to the calculated score
+            var feedback = 'You scored ' + score + '%. Keep learning!';
+            alert(feedback);
+        }
+    </script>
+
+</body>
+</html>

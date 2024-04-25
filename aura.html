@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change AI Chatbot</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Include your CSS file here -->
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .chat-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            height: 400px; /* Adjust the height of the chat container as needed */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            color: #ff9900;
+        }
+
+        .bot-message {
+            color: #66ccff;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            font-size: 1.2rem;
+            border: 1px solid #666;
+            border-radius: 5px;
+            color: white;
+            background-color: #333;
+            outline: none;
+        }
+
+        .send-button {
+            width: 60px;
+            padding: 10px;
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .send-button:hover {
+            background-color: #ff6600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>AURA the climate change chatbot</h1>
+
+        <div class="chat-container" id="chat-container">
+            <!-- Chat messages will be displayed here -->
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Ask me anything about climate change...">
+            <button class="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById('user-input').value;
+            if (userInput.trim() !== '') {
+                addMessage('user', userInput);
+
+                // Here you can implement the functionality to send the user's message to the AI backend
+                // and get the response from the AI
+                // For demonstration purposes, let's simulate a bot response after 1 second
+                setTimeout(function() {
+                    var botResponse = 'This is a sample bot response.';
+                    addMessage('bot', botResponse);
+                }, 1000);
+
+                // Clear the user input field after sending the message
+                document.getElementById('user-input').value = '';
+            }
+        }
+
+        function addMessage(sender, message) {
+            var chatContainer = document.getElementById('chat-container');
+            var messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+            if (sender === 'user') {
+                messageElement.classList.add('user-message');
+            } else {
+                messageElement.classList.add('bot-message');
+            }
+            messageElement.textContent = message;
+            chatContainer.appendChild(messageElement);
+
+            // Scroll to the bottom of the chat container to show the latest message
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    </script>
+
+</body>
+</html>
